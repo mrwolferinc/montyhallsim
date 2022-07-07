@@ -68,7 +68,7 @@ def run():
     now = datetime.now()
 
     # Parse arguments
-    parser = argparse.ArgumentParser(prog='montyhallsim', description=f'montyhallsim v{__version__}\n(c) {now.year} {__author__}. All rights reserved.')
+    parser = argparse.ArgumentParser(prog='montyhallsim', description=f'montyhallsim v{__version__}\n(c) {now.year} {__author__}. All rights reserved.', formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('-r', '--rounds', nargs='?', type=int, default=10, help='Set the number of rounds to be played - defaults to 10.')
     parser.add_argument('-n', '--no-swap', action='store_true', help='Run a simulation without swapping doors.')
     parser.add_argument('--version', action='store_true', help='Print the version - does not run the simulation.')
@@ -85,9 +85,9 @@ def run():
                 run_simulation(args.rounds)
         except Exception as e:
             if e.message == '"rounds" must be greater than 0':
-                print(type(e).__name__ + ' --rounds must be greater than 0')
+                print(f'{type(e).__name__}: --rounds must be greater than 0')
             else:
-                print(type(e).__name__ + f' {e.message}')
+                print(f'{type(e).__name__}: {e.message}')
 
 if __name__ == '__main__':
     run()
